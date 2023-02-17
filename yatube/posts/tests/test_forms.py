@@ -1,4 +1,3 @@
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 from posts.forms import PostForm
@@ -45,12 +44,10 @@ class PostCreateFormTests(TestCase):
             'posts:profile', kwargs={'username': self.user.username}
         ))
         self.assertEqual(Post.objects.count(), self.posts_count+1)
-        self.assertTrue(
-            Post.objects.filter(
-                id=self.group.id,
-                group=PostCreateFormTests.group,
-            ).exists()
-        )
+        self.assertTrue(Post.objects.filter(
+            id=self.group.id,
+            group=PostCreateFormTests.group,
+        ).exists())
 
     def test_post_edit(self):
         """Валидная форма редактирует запись в Post"""
@@ -58,7 +55,7 @@ class PostCreateFormTests(TestCase):
             author=self.user,
             text='Тестовый пост',
             group=self.group,
-        )    
+        )
         self.group2 = Group.objects.create(
             title='Тестовая группа2',
             slug='test-group',

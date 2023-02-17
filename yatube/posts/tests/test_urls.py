@@ -29,15 +29,22 @@ class PostURLTests(TestCase):
         self.authorized_client = Client()
         self.authorized_client.force_login(self.user)
 
-    
     def test_urls_uses_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
         templates_url_names = {
             'posts/index.html': reverse('posts:index'),
-            'posts/group_list.html': reverse('posts:group_posts', kwargs={'slug': self.group.slug}),
-            'posts/profile.html': reverse('posts:profile', kwargs={'username': self.user.username}),
-            'posts/post_detail.html': reverse('posts:post_detail', kwargs={'post_id': self.post.id}),
-            'posts/includes/create_post.html': reverse('posts:post_edit', kwargs={'post_id': self.post.id}),
+            'posts/group_list.html': reverse(
+                'posts:group_posts', kwargs={'slug': self.group.slug}
+            ),
+            'posts/profile.html': reverse(
+                'posts:profile', kwargs={'username': self.user.username}
+            ),
+            'posts/post_detail.html': reverse(
+                'posts:post_detail', kwargs={'post_id': self.post.id}
+            ),
+            'posts/includes/create_post.html': reverse(
+                'posts:post_edit', kwargs={'post_id': self.post.id}
+            ),
             'posts/includes/create_post.html': reverse('posts:post_create'),
         }
         for template, address in templates_url_names.items():
