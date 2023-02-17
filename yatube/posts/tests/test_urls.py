@@ -42,10 +42,10 @@ class PostURLTests(TestCase):
             'posts/post_detail.html': reverse(
                 'posts:post_detail', kwargs={'post_id': self.post.id}
             ),
-            'posts/includes/create_post.html': reverse(
+            'posts/create_post.html': reverse(
                 'posts:post_edit', kwargs={'post_id': self.post.id}
             ),
-            'posts/includes/create_post.html': reverse('posts:post_create'),
+            'posts/create_post.html': reverse('posts:post_create'),
         }
         for template, address in templates_url_names.items():
             with self.subTest(address=address):
